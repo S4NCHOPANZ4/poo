@@ -4,15 +4,12 @@ import java.util.Scanner;
 public class CifradoCesar {
     private Scanner scanner = new Scanner(System.in);
     private String palabra;
+    private int option; 
     private int desplazamiento;
+    private String resultado;
 
-    public void iniciar() {
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("============ Bienvenido al sistema de cifrado cesar ============\n");
-            int opt = validOpt(1, 3, "1. Cifrar\n2. Descifrar\n3. Salir\n", "Ingresa un valor válido (1 - 3)");
-
-            switch (opt) {
+    private void iniciar() {
+        switch (option) {
                 case 1:
                     cifrar();
                     break;
@@ -20,36 +17,17 @@ public class CifradoCesar {
                     descifrar();
                     break;
                 default:
-                    exit = true;
-            }
-
-            int opt2 = validOpt(1, 2, "1. Volver a elegir Cifrar o Descifrar\n2. Salir", "Ingrese una opción válida (1 - 2)");
-            if (opt2 == 2) {
-                exit = true;
+                    break;
             }
         }
-    }
     private void cifrar() {
-        System.out.print("¿Qué oración te gustaría cifrar?\n> ");
-        setPalabra(scanner.nextLine().trim());
-
-        setDesplazamiento(validOpt(1, 99, "¿Cuántas posiciones te gustaría moverte?\n> ",
-                "Ingresa una opción válida (1 - 99)\n¿Cuántas posiciones te gustaría moverte?\n> "));
-
         String resultado = procesarTexto(getPalabra(), getDesplazamiento(), true);
-        System.out.println("\nTu palabra cifrada es:\n" + resultado + "\n¡Guarda el secreto!\n");
+        setResultado(resultado);
     }
     private void descifrar() {
-        System.out.print("¿Qué oración te gustaría descifrar?\n> ");
-        setPalabra(scanner.nextLine().trim());
-
-        setDesplazamiento(validOpt(1, 99, "¿Cuántas posiciones te gustaría moverte?\n> ",
-                "Ingresa una opción válida (1 - 99)\n¿Cuántas posiciones te gustaría moverte?\n> "));
-
         String resultado = procesarTexto(getPalabra(), getDesplazamiento(), false);
-        System.out.println("\nTu palabra descifrada es:\n" + resultado + "\n¡Guarda el secreto!\n");
+        setResultado(resultado);
     }
-
     private String procesarTexto(String texto, int desplazamiento, boolean cifrar) {
         StringBuilder resultado = new StringBuilder();
 
@@ -72,7 +50,6 @@ public class CifradoCesar {
 
         return resultado.toString();
     }
-
     public int validOpt(int min, int max, String menu, String errorMessage) {
         while (true) {
             try {
@@ -91,11 +68,23 @@ public class CifradoCesar {
             }
         }
     }
+   
 
+    public void setResultado(String resultado){
+        this.resultado = resultado;
+    }
+    public String getResultado(){
+        return resultado;
+    }
+    public void setOption(int option){
+        this.option = option;
+    }
+    public int getOption(){
+        return option;
+    }
     public String getPalabra() {
         return palabra;
     }
-
     public void setPalabra(String palabra) {
         this.palabra = palabra;
     }
@@ -105,6 +94,7 @@ public class CifradoCesar {
     }
 
     public void setDesplazamiento(int desplazamiento) {
+        iniciar();
         this.desplazamiento = desplazamiento;
     }
 }
