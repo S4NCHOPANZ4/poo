@@ -86,17 +86,17 @@ public class Main {
             }
         }
     }
-    public static void usarCifradoCesar(){
+    public static void usarCifradoCesar() {
         CifradoCesar cc = new CifradoCesar();
-        while(true){
+        while (true) {
             System.out.println("============ Bienvenido al sistema de cifrado cesar ============\n");
             cc.setOption(validOpt(1, 3, "1. Cifrar\n2. Descifrar\n3. Salir\n", "Ingresa un valor válido (1 - 3)"));
-            System.out.print("¿Con qué otracion te gustaria trabajar?\n> ");
+            System.out.print("¿Con qué operación te gustaría trabajar?\n> ");
             cc.setPalabra(scanner.nextLine().trim());
             cc.setDesplazamiento(validOpt(1, 99, "¿Cuántas posiciones te gustaría moverte?\n> ",
-            "Ingresa una opción válida (1 - 99)\n¿Cuántas posiciones te gustaría moverte?\n> "));
+                    "Ingresa una opción válida (1 - 99)\n¿Cuántas posiciones te gustaría moverte?\n> "));
             System.out.println("\nTu palabra es:\n" + cc.getResultado() + "\n¡Guarda el secreto!\n");
-            int opt= validOpt(1, 2, "1. Volver a elegir Cifrar o Descifrar\n2. Salir", "Ingrese una opción válida (1 - 2)");
+            int opt = validOpt(1, 2, "1. Volver a elegir Cifrar o Descifrar\n2. Salir", "Ingrese una opción válida (1 - 2)");
             if (opt == 2) {
                 break;
             }
@@ -112,22 +112,6 @@ public class Main {
             convTermica.setTemp(validOpt(-237, 1000000000, 
             "¿Qué temperatura en Celsius deseas convertir? \n", 
             "Ingrese un valor válido"));
-            // switch (convTermica.getOption()) {
-            //     case 1:
-            //         if (convTermica.getTemp() <= -459.67){
-            //             System.out.println("¡Qué frío! Alcanzaste el cero absoluto.\n-459.67 °F");
-            //             continue;
-            //         }
-            //         break;
-            //     case 2:
-            //         if (convTermica.getTemp() <= -273.15){
-            //              System.out.println("¡Qué frío! Alcanzaste el cero absoluto.\n-273.15 °C");
-            //              continue;
-            //         }
-            //         break;
-            //     default:
-            //         break;
-            // }
             convTermica.setConversion(convTermica.getOption());
             System.out.println(convTermica.getConversion());
             int opt= validOpt(1, 2, "1. Volver a convertir\n2. Salir", "Ingrese una opción válida (1 - 2)");

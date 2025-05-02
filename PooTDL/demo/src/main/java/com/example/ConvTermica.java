@@ -5,19 +5,34 @@ public class ConvTermica {
     private double temp;
     private double conversion;
     private int option;
+
+    // Constructor sin parámetros
+    public ConvTermica() {
+        this.temp = 0.0;
+        this.conversion = 0.0;
+        this.option = 0;
+    }
+
+    // Constructor con parámetros
+    public ConvTermica(double temp, int option) {
+        this.temp = temp;
+        this.option = option;
+        this.conversion = 0.0; // La conversión se calcula más tarde
+    }
+
     public double iniciar(int opt) {
-            switch (opt) {
-                case 1:
-                    System.out.println("============ Celsius a Fahrenheit ============\n");
-                    return celFar();
+        switch (opt) {
+            case 1:
+                System.out.println("============ Celsius a Fahrenheit ============\n");
+                return celFar();
 
-                case 2:
-                    System.out.println("============ Fahrenheit a Celsius ============\n");
-                    return farCel();
+            case 2:
+                System.out.println("============ Fahrenheit a Celsius ============\n");
+                return farCel();
 
-                default:
-                    return 10;
-            }
+            default:
+                return 10;
+        }
     }
 
     private double celFar() {
@@ -46,11 +61,11 @@ public class ConvTermica {
         return this.conversion;
     }
 
-    public void setOption(int opt){
+    public void setOption(int opt) {
         this.option = opt;
     }
 
-    public int getOption(){
+    public int getOption() {
         return option;
     }
 }

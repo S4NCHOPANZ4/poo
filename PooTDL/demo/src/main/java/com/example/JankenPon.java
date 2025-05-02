@@ -10,24 +10,36 @@ public class JankenPon {
     private int eleccionCpu;
     private String resultado;
 
+    // Constructor sin parámetros
+    public JankenPon() {
+        this.eleccionUsuario = 0;
+        this.eleccionCpu =  rand.nextInt(3) + 1;
+        this.resultado = "";
+    }
+
+    // Constructor con parámetros
+    public JankenPon(int eleccionUsuario) {
+        this.eleccionUsuario = eleccionUsuario;
+        this.eleccionCpu =  rand.nextInt(3) + 1;
+        this.resultado = "";
+    }
 
     private String mostrarResultado(int eleccionUsuario, int eleccionCpu) {
         String jugador = opciones[eleccionUsuario - 1];
         String cpu = opciones[eleccionCpu - 1];
 
-
         if (eleccionUsuario == eleccionCpu) {
-            String result = ("Tu: " + jugador + " | CPU: " + cpu+ "\n ¡Empate!");
+            String result = ("Tu: " + jugador + " | CPU: " + cpu + "\n ¡Empate!");
             return result;
         } else if (
             (eleccionUsuario == 1 && eleccionCpu == 3) ||
             (eleccionUsuario == 2 && eleccionCpu == 1) ||
             (eleccionUsuario == 3 && eleccionCpu == 2)
         ) {
-            String result = ("Tu: " + jugador + " | CPU: " + cpu+ "\n ¡Victoria!");
+            String result = ("Tu: " + jugador + " | CPU: " + cpu + "\n ¡Victoria!");
             return result;
         } else {
-            String result = ("Tu: " + jugador + " | CPU: " + cpu+ "\n ¡Derrota!");
+            String result = ("Tu: " + jugador + " | CPU: " + cpu + "\n ¡Derrota!");
             return result;
         }
     }
@@ -45,13 +57,14 @@ public class JankenPon {
     }
 
     public void setEleccionCpu(int max, int min) {
-        this.eleccionCpu =  rand.nextInt(max) + min;
+        this.eleccionCpu = rand.nextInt(max) + min;
     }
 
-    public void setResultado(int user, int cpu){
+    public void setResultado(int user, int cpu) {
         this.resultado = mostrarResultado(user, cpu);
     }
-    public String getResultado(){
+
+    public String getResultado() {
         return resultado;
     }
 }
