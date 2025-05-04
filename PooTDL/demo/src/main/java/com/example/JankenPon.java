@@ -1,7 +1,6 @@
 package com.example;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class JankenPon {
     private final String[] opciones = {"Piedra", "Papel", "Tijera"};
