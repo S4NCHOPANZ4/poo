@@ -1,6 +1,5 @@
 package com.example;
 import java.util.Random;
-import java.util.Scanner;
 
 public class GuessNum {
     private int numeroAleatorio;
