@@ -9,14 +9,12 @@ public class JankenPon {
     private int eleccionCpu;
     private String resultado;
 
-    // Constructor sin parámetros
     public JankenPon() {
         this.eleccionUsuario = 0;
         this.eleccionCpu =  rand.nextInt(3) + 1;
         this.resultado = "";
     }
 
-    // Constructor con parámetros
     public JankenPon(int eleccionUsuario) {
         this.eleccionUsuario = eleccionUsuario;
         this.eleccionCpu =  rand.nextInt(3) + 1;
