@@ -58,6 +58,11 @@ public class CifradoCesar {
     }
 
     public String getResultado() {
+        if (this.option == 1) {
+            cifrar(); 
+        } else if (this.option == 2) {
+            descifrar(); 
+        }
         return resultado;
     }
 
@@ -83,10 +88,6 @@ public class CifradoCesar {
 
     public void setDesplazamiento(int desplazamiento) {
         this.desplazamiento = desplazamiento;
-        if (this.option == 1) {
-            cifrar(); 
-        } else if (this.option == 2) {
-            descifrar(); 
-        }
+
     }
 }

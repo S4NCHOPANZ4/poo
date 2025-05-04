@@ -6,18 +6,16 @@ public class ConvTermica {
     private double conversion;
     private int option;
 
-    // Constructor sin parámetros
     public ConvTermica() {
         this.temp = 0.0;
         this.conversion = 0.0;
         this.option = 0;
     }
 
-    // Constructor con parámetros
     public ConvTermica(double temp, int option) {
         this.temp = temp;
         this.option = option;
-        this.conversion = 0.0; // La conversión se calcula más tarde
+        this.conversion = 0.0; 
     }
 
     public double iniciar(int opt) {
