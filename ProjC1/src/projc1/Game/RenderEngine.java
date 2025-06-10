@@ -1,11 +1,7 @@
 package projc1.Game;
 
 class RenderEngine {
-    public void drawRectangle(java.awt.Graphics2D g2d, int x, int y, int width, int height, java.awt.Color color) {
-        g2d.setColor(color);
-        g2d.fillRect(x, y, width, height);
-    }
-    
+
     public void drawOval(java.awt.Graphics2D g2d, int x, int y, int width, int height, java.awt.Color color) {
         g2d.setColor(color);
         g2d.fillOval(x, y, width, height);

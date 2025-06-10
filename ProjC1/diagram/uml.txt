@@ -1,0 +1,237 @@
+@startuml
+!theme plain
+
+' Main Application Classes
+class Main {
+    -Menu menu
+    -AddAnimal addanimal
+    +setMenu()
+    +setAddAnimal()
+    +main(String[] args)
+}
+
+' Animal Management System
+class Menu {
+    -AnimalManager manager
+    -String currentTextFilter
+    -String currentSpeciesFilter
+    -String currentAgeFilter
+    -String currentWeightFilter
+    +Menu()
+    +filterAnimals()
+    +applyFilters(String species, String age, String weight)
+    +loadAnimalsTabla(List<Animal> lista)
+    +getCurrentTextFilter(): String
+    +getCurrentSpeciesFilter(): String
+    +getCurrentAgeFilter(): String
+    +getCurrentWeightFilter(): String
+}
+
+class AnimalManager {
+    +getAnimals(): List<Animal>
+    +editAnimal(String ogName, Animal newAnimal)
+}
+
+class Animal {
+    -String name
+    -String specie
+    -double weight
+    -int age
+    -String route
+    +Animal(String name, String specie, double weight, int age)
+    +getName(): String
+    +getSpecie(): String
+    +getWeight(): double
+    +getAge(): int
+    +getRoute(): String
+    +setLabelIcon(JLabel label, String route)
+}
+
+class Filters {
+    -Menu menuPanel
+    +Filters()
+    +Filters(Menu menuPanel)
+    -addItemsToComboBox1()
+    -addItemsToComboBox2()
+    -addItemsToComboBox3()
+}
+
+class ExtraInfo {
+    -Animal animal
+    -AnimalManager manager
+    -Menu menuPanel
+    -String name
+    -String ogName
+    -String specie
+    -double weight
+    -int age
+    +ExtraInfo()
+    +ExtraInfo(Menu menuPanel, String name, String specie, double weight, int age)
+    -loadValues()
+    -getClassType()
+    +setName(String name)
+    +setSpecie(String specie)
+    +setWeight(double weight)
+    +setAge(int age)
+}
+
+class AddAnimal {
+    -Menu menuPanel
+    +AddAnimal(Menu menuPanel)
+}
+
+' Game System Classes
+class GamePanel {
+    +GamePanel(String route)
+    +main(String[] args)
+}
+
+class GameCanvas {
+    -ScoreSystem scoreSystem
+    -RenderEngine renderEngine
+    -PositionGenerator positionGenerator
+    -Player player
+    -Coin coin
+    +GameCanvas(String imageRoute)
+    -initializeGame(String imageRoute)
+    -setupUI()
+    -generateNewCoin()
+    +paintComponent(Graphics g)
+    -checkCollisions()
+    +keyPressed(KeyEvent e)
+    +keyReleased(KeyEvent e)
+    +keyTyped(KeyEvent e)
+    +actionPerformed(ActionEvent e)
+}
+
+' Game Support Classes
+class ScoreSystem {
+    -int score
+    -int coinsCollected
+    +ScoreSystem()
+    +addScore(int points)
+    +reset()
+    +getScore(): int
+    +getCoinsCollected(): int
+}
+
+class RenderEngine {
+    +drawOval(Graphics2D g2d, int x, int y, int width, int height, Color color)
+    +drawBorder(Graphics2D g2d, int x, int y, int width, int height, Color color)
+    +drawText(Graphics2D g2d, String text, int x, int y, Font font, Color color)
+}
+
+class PositionGenerator {
+    +PositionGenerator()
+    +generateRandomPosition(int maxX, int maxY, Position playerPos, int minDistance): Position
+}
+
+class Position {
+    -Point coordinate
+    +Position(int x, int y)
+    +getX(): int
+    +getY(): int
+    +move(int deltaX, int deltaY)
+    +setPosition(int x, int y)
+    +distanceTo(Position other): double
+}
+
+class Point {
+    -int x
+    -int y
+    +Point(int x, int y)
+    +getX(): int
+    +getY(): int
+    +setX(int x)
+    +setY(int y)
+    +distanceTo(Point other): double
+}
+
+class Player {
+    -Position position
+    -static final int SIZE
+    -static final int SPEED
+    -Image playerImage
+    +Player(int startX, int startY)
+    +moveLeft(int maxWidth)
+    +moveRight(int maxWidth)
+    +moveUp()
+    +moveDown(int maxHeight)
+    +reset()
+    +draw(Graphics2D g2d, RenderEngine renderer)
+    +setPlayerImage(String resourcePath)
+    +getPosition(): Position
+    +getSize(): int
+}
+
+' Animal Subclasses
+class Cow {
+    +Cow(String name, String specie, double weight, int age, String route)
+}
+
+class Fox {
+    +Fox(String name, String specie, double weight, int age, String route)
+}
+
+class Chicken {
+    +Chicken(String name, String specie, double weight, int age, String route)
+}
+
+class Donkey {
+    +Donkey(String name, String specie, double weight, int age, String route)
+}
+
+class Sheep {
+    +Sheep(String name, String specie, double weight, int age, String route)
+}
+
+class Horse {
+    +Horse(String name, String specie, double weight, int age, String route)
+}
+
+class Llama {
+    +Llama(String name, String specie, double weight, int age, String route)
+}
+
+' Relationships - Main Application
+Main --> Menu : contains
+Main --> AddAnimal : contains
+
+' Relationships - Animal Management
+Menu --> AnimalManager : uses
+Menu --> Filters : creates
+Menu --> ExtraInfo : creates
+AnimalManager o-- Animal : manages
+ExtraInfo --> Animal : contains
+ExtraInfo --> AnimalManager : uses
+ExtraInfo --> GamePanel : creates
+AddAnimal --> Menu : references
+
+' Relationships - Game System
+GamePanel --> GameCanvas : contains
+GameCanvas *-- Player : composition
+GameCanvas o-- ScoreSystem : aggregation
+GameCanvas o-- RenderEngine : aggregation
+GameCanvas o-- PositionGenerator : aggregation
+GameCanvas ..> Position : dependency
+PositionGenerator ..> Position : dependency (creates)
+Player *-- Position : composition
+Position *-- Point : composition
+
+' Inheritance - Animals
+Animal <|-- Cow
+Animal <|-- Fox
+Animal <|-- Chicken
+Animal <|-- Donkey
+Animal <|-- Sheep
+Animal <|-- Horse
+Animal <|-- Llama
+
+' Notes
+note right of GameCanvas : "AGREGACIÓN: ScoreSystem, RenderEngine,\nPositionGenerator pueden existir\nindependientemente"
+note left of GameCanvas : "COMPOSICIÓN: Player es parte integral del juego"
+note bottom of GameCanvas : "DEPENDENCIA: Usa PositionGenerator\npara generar nuevas posiciones"
+note top of Position : "COMPOSICIÓN: Position contiene Point\ny controla su ciclo de vida"
+note right of Player : "COMPOSICIÓN: Player tiene Position\ny la crea en su constructor"
+
+@enduml
