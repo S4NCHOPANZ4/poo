@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Luna",
+    "specie": "Llama",
+    "weight": 32.4,
+    "age": 3,
+    "route": ""
+  },
+  {
+    "name": "Eduardaaaaaaa",
+    "specie": "Cow",
+    "weight": 10.0,
+    "age": 80,
+    "route": ""
+  },
+  {
+    "name": "Joao",
+    "specie": "Chicken",
+    "weight": 1.0,
+    "age": 1,
+    "route": ""
+  },
+  {
+    "name": "Juanchomaxx",
+    "specie": "Chicken",
+    "weight": 10.0,
+    "age": 4,
+    "route": ""
+  },
+  {
+    "name": "juanchoHorse",
+    "specie": "Horse",
+    "weight": 10.0,
+    "age": 2,
+    "route": ""
+  },
+  {
+    "name": "max",
+    "specie": "Sheep",
+    "weight": 10.0,
+    "age": 1,
+    "route": ""
+  }
+]
