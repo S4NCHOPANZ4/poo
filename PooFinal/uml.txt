@@ -1,0 +1,64 @@
+@startuml
+
+class Juego {
+  - pantalla: Surface
+  - reloj: Clock
+  - fuente: Font
+  - fuente_pequena: Font
+  - fondo: Surface
+  - jugador: Jugador
+  - enemigos: List<Enemigo>
+  - balas: List<Bala>
+  - puntaje: int
+  - vidas: int
+  - pausado: bool
+  - hilo_enemigos: Thread
+  + ejecutar(): void
+  + pausar_juego(): void
+  + reanudar_juego(): void
+  + reiniciar_juego(): void
+  + manejar_enemigos(): void
+  + manejar_balas(): void
+  + intentar_disparo(): void
+}
+
+class Jugador {
+  - imagen: Surface
+  - rect: Rect
+  - velocidad: int
+  + mover(keys): void
+  + dibujar(pantalla): void
+}
+
+class Bala {
+  - imagen: Surface
+  - rect: Rect
+  - velocidad: int
+  + mover(): void
+  + dibujar(pantalla): void
+}
+
+class Enemigo {
+  - imagen: Surface
+  - rect: Rect
+  - velocidad: float
+  - pausado: bool
+  - activo: bool
+  - thread: Thread
+  + pausar(): void
+  + reanudar(): void
+  + detener(): void
+  + dibujar(pantalla): void
+}
+
+class Main {
+  ' Script principal
+}
+
+Main --> Juego : instancia
+
+Juego --> Jugador
+Juego -->  Bala
+Juego -->  Enemigo
+
+@enduml
